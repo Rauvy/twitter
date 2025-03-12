@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import useFollow from "../../hooks/useFollow";
+import getApiUrl from "../../utils/apiConfig";
 
 import RightPanelSkeleton from "../skeletons/RightPanelSkeleton";
 import LoadingSpinner from "./LoadingSpinner";
@@ -11,7 +12,7 @@ const RightPanel = () => {
 		queryKey: ["suggestedUsers"],
 		queryFn: async () => {
 			try {
-				const res = await fetch("https://twitter-euod.onrender.com/sapi/users/suggested");
+				const res = await fetch(getApiUrl("/users/suggested"));
 				const data = await res.json();
 				if (!res.ok) {
 					throw new Error(data.error || "Something went wrong!");
