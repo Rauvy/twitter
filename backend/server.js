@@ -35,10 +35,10 @@ app.get("/", (req, res) => {
 	res.send("Backend is working!");
   });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/posts", postRoutes);
-app.use("/api/notifications", notificationRoutes);
+app.use("https://twitter-euod.onrender.com/api/auth", authRoutes);
+app.use("https://twitter-euod.onrender.com/api/users", userRoutes);
+app.use("https://twitter-euod.onrender.com/api/posts", postRoutes);
+app.use("https://twitter-euod.onrender.com/api/notifications", notificationRoutes);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "/frontend/dist")));
