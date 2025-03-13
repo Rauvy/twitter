@@ -3,9 +3,8 @@
  * This centralizes API URL management for all environments
  */
 
-// In development, we use relative URLs that get proxied through Vite
-// In production, the URL will be automatically determined
-const API_BASE_URL = '/api';
+// Use the deployed backend URL
+const API_BASE_URL = 'https://twitter-opi0.onrender.com/api';
 
 /**
  * Get the complete API URL for a given endpoint
