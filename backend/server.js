@@ -26,10 +26,10 @@ const __dirname = path.resolve();
 
 // Configure CORS based on environment
 const corsOptions = {
-	origin: process.env.NODE_ENV === "production" 
-		? ["https://twitter-euod.onrender.com", "https://twitter-clone-ten-sooty.vercel.app"] 
-		: "http://localhost:3000",
-	credentials: true
+	origin: true, // Allow all origins during development
+	credentials: true,
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));
