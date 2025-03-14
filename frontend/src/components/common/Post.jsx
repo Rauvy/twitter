@@ -10,7 +10,6 @@ import { toast } from "react-hot-toast";
 
 import LoadingSpinner from "./LoadingSpinner";
 import { formatPostDate } from "../../utils/date";
-import getApiUrl from "../../utils/apiConfig";
 
 const Post = ({ post }) => {
 	const [comment, setComment] = useState("");
@@ -48,7 +47,7 @@ const Post = ({ post }) => {
 	const { mutate: likePost, isPending: isLiking } = useMutation({
 		mutationFn: async () => {
 			try {
-				const res = await fetch(getApiUrl(`/posts/like/${post._id}`), {
+				const res = await fetch(`/api/posts/like/${post._id}`, {
 					method: "POST",
 				});
 				const data = await res.json();
@@ -82,7 +81,7 @@ const Post = ({ post }) => {
 	const { mutate: commentPost, isPending: isCommenting } = useMutation({
 		mutationFn: async () => {
 			try {
-				const res = await fetch(getApiUrl(`/posts/comment/${post._id}`), {
+				const res = await fetch(`/api/posts/comment/${post._id}`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",

@@ -12,14 +12,14 @@ import RightPanel from "./components/common/RightPanel";
 import { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "./components/common/LoadingSpinner";
-import getApiUrl from "./utils/apiConfig";
 
 function App() {
 	const { data: authUser, isLoading } = useQuery({
+		// we use queryKey to give a unique name to our query and refer to it later
 		queryKey: ["authUser"],
 		queryFn: async () => {
 			try {
-				const res = await fetch(getApiUrl("/auth/me"));
+				const res = await fetch("/api/auth/me");
 				const data = await res.json();
 				if (data.error) return null;
 				if (!res.ok) {
@@ -43,8 +43,8 @@ function App() {
 	}
 
 	return (
-		<div data-theme="black" className='flex max-w-6xl mx-auto'>
-	
+		<div className='flex max-w-6xl mx-auto'>
+			{/* Common component, bc it's not wrapped with Routes */}
 			{authUser && <Sidebar />}
 			<Routes>
 				<Route path='/' element={authUser ? <HomePage /> : <Navigate to='/login' />} />

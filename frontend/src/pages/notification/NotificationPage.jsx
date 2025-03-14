@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import getApiUrl from "../../utils/apiConfig";
 
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 
@@ -15,7 +14,7 @@ const NotificationPage = () => {
 		queryKey: ["notifications"],
 		queryFn: async () => {
 			try {
-				const res = await fetch(getApiUrl("/notifications"));
+				const res = await fetch("/api/notifications");
 				const data = await res.json();
 				if (!res.ok) throw new Error(data.error || "Something went wrong");
 				return data;
@@ -28,7 +27,7 @@ const NotificationPage = () => {
 	const { mutate: deleteNotifications } = useMutation({
 		mutationFn: async () => {
 			try {
-				const res = await fetch(getApiUrl("/notifications"), {
+				const res = await fetch("/api/notifications", {
 					method: "DELETE",
 				});
 				const data = await res.json();
