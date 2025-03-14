@@ -24,15 +24,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
-const corsOptions = {
-	origin: process.env.NODE_ENV === "production" 
-		? ["https://twitter-frontend-a6u3.onrender.com", "https://twitter-frontend.netlify.app"] 
-		: "http://localhost:3000",
+// Use fully permissive CORS for debugging
+app.use(cors({
+	origin: true, // Allow requests from any origin
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-	allowedHeaders: ['Content-Type', 'Authorization']
-};
-app.use(cors(corsOptions));
+	allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+}));
 
 app.use(express.json({ limit: "5mb" })); // to parse req.body
 // limit shouldn't be too high to prevent DOS
