@@ -31,4 +31,3 @@ services:
           name: twitter-backend
           type: web
           envVarKey: RENDER_EXTERNAL_URL
-        sync: false
