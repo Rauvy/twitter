@@ -8,7 +8,6 @@ import { MdPassword } from "react-icons/md";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getApiUrl } from "../../../utils/apiConfig";
-import { testApiConnection } from "../../../utils/testApiConnection";
 
 const LoginPage = () => {
 	const [formData, setFormData] = useState({
@@ -57,11 +56,6 @@ const LoginPage = () => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-	const handleTestApi = async () => {
-		const result = await testApiConnection();
-		alert(result.success ? "API Connection Success!" : `API Connection Failed: ${result.error}`);
-	};
-
 	return (
 		<div className='max-w-screen-xl mx-auto flex h-screen'>
 			<div className='flex-1 hidden lg:flex items-center  justify-center'>
@@ -98,15 +92,6 @@ const LoginPage = () => {
 						{isPending ? "Loading..." : "Login"}
 					</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
-					
-					{/* Test API Connection Button */}
-					<button 
-						type="button" 
-						className='btn rounded-full btn-warning text-white'
-						onClick={handleTestApi}
-					>
-						Test API Connection
-					</button>
 				</form>
 				<div className='flex flex-col gap-2 mt-4'>
 					<p className='text-white text-lg'>{"Don't"} have an account?</p>
