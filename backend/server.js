@@ -26,7 +26,7 @@ const __dirname = path.resolve();
 
 const corsOptions = {
 	origin: process.env.NODE_ENV === "production" 
-		? ["https://twitter-clone-frontend.onrender.app"] 
+		? ["https://twitter-frontend.onrender.app", "https://twitter-frontend.netlify.app"] 
 		: "http://localhost:3000",
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

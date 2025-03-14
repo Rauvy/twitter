@@ -8,6 +8,7 @@ let API_BASE_URL;
 
 // In production, use the deployed backend URL
 if (import.meta.env.PROD) {
+  // Use the correct backend URL
   API_BASE_URL = 'https://twitter-backend.onrender.com/api';
 } else {
   // In development, use relative URLs that get proxied through Vite

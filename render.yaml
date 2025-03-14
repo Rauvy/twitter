@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: twitter-clone-backend
+    name: twitter-backend
     env: node
     plan: free
     buildCommand: npm install
@@ -17,4 +17,18 @@ services:
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
+        sync: false
+
+  - type: web
+    name: twitter-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: twitter-backend
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
         sync: false
