@@ -3,7 +3,8 @@ services:
     name: twitter-backend
     env: node
     plan: free
-    buildCommand: npm install
+    buildCommand: |
+      npm ci
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -22,7 +23,11 @@ services:
   - type: web
     name: twitter-frontend
     env: static
-    buildCommand: cd frontend && npm install && npm run build
+    buildCommand: |
+      cd frontend
+      rm -rf node_modules package-lock.json
+      npm install
+      npm run build
     staticPublishPath: ./frontend/dist
     pullRequestPreviewsEnabled: true
     envVars:
