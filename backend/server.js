@@ -38,6 +38,12 @@ app.use(express.urlencoded({ extended: true })); // to parse form data(urlencode
 
 app.use(cookieParser());
 
+// Debug middleware to log all incoming requests
+app.use((req, res, next) => {
+	console.log(`${new Date().toISOString()} - ${req.method} ${req.originalUrl}`);
+	next();
+});
+
 app.get("/", (req, res) => {
 	res.send("Backend is working!");
 });
